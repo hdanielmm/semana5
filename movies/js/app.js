@@ -22,8 +22,5 @@ class GetMovies {
     }
   }
 
-  _printMovie(movie) {
-  }
+  _printMovie(movie) {}
 }
-
-
