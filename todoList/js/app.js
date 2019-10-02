@@ -17,7 +17,7 @@
 const _get = () => {
     $.ajax({
         type: "GET",
-        url: "http://makeitreal-todo.herokuapp.com/todo_items",
+        url: "https://makeitreal-todo.herokuapp.com/todo_items",
         headers: { "Content-Type": "application/json" },
     }).done(function (data) {
         data.forEach(element => {
@@ -32,7 +32,7 @@ const _post = (value) => {
     console.log(value);
     $.ajax({
         type: "POST",
-        url: "http://makeitreal-todo.herokuapp.com/todo_items",
+        url: "https://makeitreal-todo.herokuapp.com/todo_items",
         headers: { "Content-Type": "application/json" },
         data: JSON.stringify({ "title": value }),
     }).done(function (data) {
@@ -43,7 +43,7 @@ const _post = (value) => {
 const _delete = (id) => {
     $.ajax({
         type: "DELETE",
-        url: "http://makeitreal-todo.herokuapp.com/todo_items/" + id,
+        url: "https://makeitreal-todo.herokuapp.com/todo_items/" + id,
         headers: { "Content-Type": "application/json" }
     }).done(function (data) {
         console.log('Deleted');
@@ -55,7 +55,7 @@ const _put = (task, id) => {
     console.log('en el Put ID', id);
     $.ajax({
         type: "PATCH",
-        url: "http://makeitreal-todo.herokuapp.com/todo_items/" + id,
+        url: "https://makeitreal-todo.herokuapp.com/todo_items/" + id,
         headers: { "Content-Type": "application/json" },
         data: JSON.stringify(task)
     }).done(function (data) {
@@ -64,7 +64,7 @@ const _put = (task, id) => {
 }
 
 const task = (input) => {
-    return $('.tasks').append(`<li class="  d-flex justify-content-between  card-text task" id=${input.id}><span class='delete'><i class="fa fa-trash"></i></span> ${input.title} <span class="edit"><i class="fa fa-pencil "></i></span></li>`)
+    return $('.tasks').append(`<li class="  d-flex justify-content-between  card-text task" id="${input.id}"><span class='delete'><i class="fa fa-trash"></i></span> ${input.title} <span class="edit"><i class="fa fa-pencil "></i></span></li>`)
 }
 
 
@@ -106,7 +106,7 @@ $('ul').on('click', 'li', function (e) {
 $('ul').on('click', '.edit', function () {
     const id = $(this).parent().attr('id')
     const text = $(this).parent().text();
-    $(this).parent().replaceWith('<input type="text" id=' + id + ' class="form-control editText" placeholder="Add new task" value=' + text + ' aria-label="Username" aria-describedby="basic-addon1">')
+    $(this).parent().replaceWith('<input type="text" id="' + id + '" class="form-control editText" placeholder="Add new task" value="' + text + '" aria-label="Username" aria-describedby="basic-addon1">')
     console.log('Esto es ID' + id);
     event.stopPropagation();
 
@@ -121,7 +121,7 @@ $("ul").on('keypress', '.editText', function (e) {
         const text = $(this).val();
         console.log('se MANDA AQUI ');
         state({ 'id': id, 'title': text });
-        $(this).replaceWith(`<li class=" d-flex justify-content-between card-text task" id=${id}><span class='delete'><i class="fa fa-trash"></i></span> ${text} <span class="edit"><i class="fa fa-pencil "></i></span></li>`)
+        $(this).replaceWith(`<li class=" d-flex justify-content-between card-text task" id="${id}"><span class='delete'><i class="fa fa-trash"></i></span> ${text} <span class="edit"><i class="fa fa-pencil "></i></span></li>`)
 
     }
     event.stopPropagation();
