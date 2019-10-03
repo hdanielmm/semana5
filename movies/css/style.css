@@ -1,0 +1,23 @@
+body {
+  font-size: 14px;
+}
+
+.movie > div {
+  height: 270px;
+}
+
+.movie .body {
+  position: relative;
+}
+
+.movie .body p {
+  position: absolute;
+}
+
+.movie .fotter .btn-favorite {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+

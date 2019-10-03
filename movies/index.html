@@ -7,23 +7,19 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
 
+  <script src="https://kit.fontawesome.com/8fa18d9ab6.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
   <div class="container">
-    <h2>Dynamic Tabs</h2>
-
+    <h2>Movies</h2>
 
     <ul class="nav nav-tabs">
       <li class="nav-item"><a class="active nav-link" data-toggle="tab" href="#popular">Popular</a></li>
@@ -32,13 +28,13 @@
 
     <div class="tab-content">
       <div id="popular" class="tab-pane fade show active">
-        <h3>Popular</h3>
+        <h3 class="my-3">Peliculas Populares</h3>
         <div class="row">
 
         </div>
       </div>
       <div id="favorites" class="tab-pane fade">
-        <h3>Favorites</h3>
+        <h3 class="my-3">Peliculas Favoritas</h3>
         <div class="row">
 
         </div>
@@ -46,37 +42,52 @@
     </div>
   </div>
 
-
-
   <script id="movie-card-template" type="text/x-handlebars-template">
-    <div id="{{id}}" class="movie col-12 col-md-6 col-lg-4 mt-4">
-      <img src="https://image.tmdb.org/t/p/w500{{poster_path}}" class="card-img-top" alt="">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{title}}</h5>
-          <p class="card-text">{{overview}}</p>
-          <button id="btn-favorite">Favoritos</button>
-          <button id="triler" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
-          </button>
+    <div id="{{id}}" class="movie col-12 col-md-6 mt-4">
+      <div class="d-flex flex-row w-100">
+        <img src="https://image.tmdb.org/t/p/w500{{poster_path}}" class="h-100">
+        <div class="content d-flex flex-column border flex-fill p-3 h-100">
+          <div class="header d-flex flex-row align-items-end justify-content-between">
+            <h4 class="mr-2">{{title}}</h4>
+            <div class="rating d-flex flex-row align-self-start">
+              <i class="far fa-star fa-lg align-self-center mb-1 mr-2"></i>
+              <h4 class="m-0">{{vote_average}}</h4>
+            </div>
+          </div>
+
+          <div class="details mb-2">
+            <span>{{runtime}}</span>
+            <span>{{release_date}}</span>
+            <span>{{genres}}</span>
+          </div>
+
+          <div class="body flex-fill">
+            <p class="text-muted h-100 w-100">{{trimString overview}}</p>
+          </div>         
+
+          <div class="fotter mt-auto d-flex flex-row justify-content-between">
+            <button id="trailer" type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">Trailer</button>
+            <span id="btn-favorite" class="btn-favorite align-self-center"><i class="far fa-heart"></i> Favoritos</span>
+          </div>
         </div>
       </div>
     </div>
   </script>
 
-
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <iframe width="560" height="315" src="" frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <iframe src="" height="700px" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.0/handlebars.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.0.10/dotdotdot.js"></script>
   <script src="js/app.js"></script>
-
   <script>
     new GetMovies();
   </script>
