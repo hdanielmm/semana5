@@ -1,0 +1,16 @@
+.container {
+  width: 1000px;
+  height: 750px;
+  display: flex;
+  border: 3px solid blue;
+}
+
+.users {
+  width: 270px;
+  border: 1px solid green;
+}
+
+.messages {
+  width: 620px:
+  border: 1px solid yellow;
+}
