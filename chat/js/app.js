@@ -8,18 +8,34 @@ function getData() {
     .then(function (response) {
       return response.json()
     })
-    .then(function (myJson) {
+    .then(myJson => {
       console.log(myJson);
-      showUser(myJson);
-      
+      return myJson.map(user => {
+        showUser(user);
+        return user;
+      });
+    })
+    .then(users => {
+      showChat(users);
     })
     .catch(error => console.log(error));
 }
 
 function showUser(user) {
-  user.forEach(element => {
-    $(".user").append("<li class="+ element.url + ">" + element.name + "</li>")
-  });
+  $(".user").append("<li class="+ user.url + ">" + user.name + "</li>");
+  return user;
 }
 
+function showChat(users) {
+  users.map(e => {
+    console.log(e.url);
+  });
+  // (".user").on("click", "")
+}
+
+// function addElement(element) {
+//   let newLi = $(document).createElement("li");
+//   let newContent = $(document).createTextNode(element.name);
+//   newLi.appendChild(newContent);
+// }
 
