@@ -1,0 +1,23 @@
+body {
+  font-size: 1.2rem;
+  padding-top: 80px;
+}
+.mensajes {
+  border: 1px solid green;
+  width: 400px;
+  height: 450px;
+  margin: 10px auto;
+  overflow: scroll;
+}
+.input {
+/*   border: 2px dotted blue; */
+  margin: 0 auto;
+  width: 400px;
+  text-align: center;
+}
+
+li {
+  /* border-bottom: 1px solid green; */
+  list-style-type: square;
+  padding-top: 5px;
+}
