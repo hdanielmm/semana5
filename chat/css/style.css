@@ -2,15 +2,44 @@
   width: 1000px;
   height: 750px;
   display: flex;
-  border: 3px solid blue;
+  border: 3px solid rgb(224, 224, 224);
+  margin: 10px auto 0;
+  font-size: 1.1rem;
+  position: relative;
+  padding: 2px;
 }
 
 .users {
   width: 270px;
-  border: 1px solid green;
+  border: 1px solid whitesmoke;
+  background-color: rgb(53, 48, 48);
+  color: whitesmoke;
+  margin-right: 5px;
 }
 
 .messages {
-  width: 620px:
-  border: 1px solid yellow;
+  width: 100%;
+  border: 1px solid whitesmoke;
+  overflow: scroll;
+  background-color: whitesmoke;
+  position: relative;
 }
+
+.container, .users, .messages { border-radius: 10px; }
+
+li { list-style:none; }
+
+.fas {
+  color: greenyellow;
+  font-size: 13px;
+}
+
+span { font-size: 0.8rem; }
+
+.far {font-size: 13px; }
+
+.messages div { margin-top: 10px; }
+
+.pointer {cursor: pointer;}
+
+.user div { margin-top: 10px; }

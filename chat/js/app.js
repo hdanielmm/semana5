@@ -4,38 +4,47 @@ $(document).ready(function () {
 })
 
 function getData() {
-  fetch("https://makeitreal.s3.amazonaws.com/chats/users.json")
+  fetch("http://makeitreal.s3.amazonaws.com/chats/users.json")
     .then(function (response) {
       return response.json()
     })
     .then(myJson => {
       console.log(myJson);
-      return myJson.map(user => {
+      myJson.map(user => {
         showUser(user);
-        return user;
       });
-    })
-    .then(users => {
-      showChat(users);
     })
     .catch(error => console.log(error));
 }
 
+function getChat(url) {
+  fetch(url)
+    .then(response => {
+      return response.json()
+    })
+    .then(json => {
+      json.map(chat => {
+        showChat(chat);
+      });
+    })
+    .catch(reject => console.log(reject));
+}
+
 function showUser(user) {
-  $(".user").append("<li class="+ user.url + ">" + user.name + "</li>");
-  return user;
+  if(user.connected) {
+    $(".user").append("<div><li id=" + user.url + " class='pointer'><i class='fas fa-circle'></i>  " + user.name + "</li></div>");
+  } else {
+    $(".user").append("<div><li id=" + user.url + " class='pointer'><i class='far fa-circle'></i>  " + user.name + "</li></div>");
+  }
 }
 
-function showChat(users) {
-  users.map(e => {
-    console.log(e.url);
-  });
-  // (".user").on("click", "")
-}
+$(".user").on("click", "li", e => {
+  const url = $(e.currentTarget).attr("id");
+  $(".message").empty(); // Delete previous chat to put new one
+  getChat(url);
+});
 
-// function addElement(element) {
-//   let newLi = $(document).createElement("li");
-//   let newContent = $(document).createTextNode(element.name);
-//   newLi.appendChild(newContent);
-// }
+function showChat(chat) {
+  $(".message").append("<div><ul><li><strong>" + chat.name + "</strong><span> " + chat.date + "</span></li><li>" + chat.body + "</li></ul></div>");
+}
 
