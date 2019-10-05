@@ -1,18 +1,3 @@
-//  var source = document.getElementById("task").innerHTML;
-//  var template = Handlebars.compile(source);
-// var context ={
-//    tasks: [{task: "My First Blog Post!"},
-//     {task: "My Secon Blog Post!"},
-//     {task: "My third Blog Post!"}]
-// }
-// const t= ()=>{
-//     context.tasks.forEach(element => {
-//         return (element);
-//     });
-// }
-// var data=template(t().json())
-// document.getElementById('tasks').innerHTML += data;
-
 
 const _get = () => {
     $.ajax({
