@@ -27,7 +27,6 @@ const _get = () => {
     });
 }
 
-
 const _post = (value) => {
     console.log(value);
     $.ajax({
@@ -67,32 +66,21 @@ const task = (input) => {
     return $('.tasks').append(`<li class="  d-flex justify-content-between  card-text task" id="${input.id}"><span class='delete'><i class="fa fa-trash"></i></span> ${input.title} <span class="edit"><i class="fa fa-pencil "></i></span></li>`)
 }
 
-
-
-
-$("input").on('keypress', function (e) {
+const onInputKeypress = function(e) {
     if (e.which == 13) {
         _post($(this).val());
         $(this).val('')
     }
+}
 
-})
-
-
-
-$('ul').on('click', '.delete', 'i', function (e) {
+const onDelete = function(e) {
     const id = parseInt($('.task').attr('id'));
     $(this).parent().remove();
     _delete(id)
     event.stopPropagation();
-})
-
-const state = (data) => {
-    _put(data, data.id);
 }
 
-
-$('ul').on('click', 'li', function (e) {
+const onToggleDone = function(e) {
     const id = parseInt($('.task').attr('id'));
     $(e.currentTarget).toggleClass("completed");
     if ($(e.currentTarget).hasClass('completed')) {
@@ -101,37 +89,37 @@ $('ul').on('click', 'li', function (e) {
         state({ 'id': id, 'done': false })
     }
     event.stopPropagation();
-});
+}
 
-$('ul').on('click', '.edit', function () {
+const onClickEdit = function(e) {
     const id = $(this).parent().attr('id')
     const text = $(this).parent().text();
     $(this).parent().replaceWith('<input type="text" id="' + id + '" class="form-control editText" placeholder="Add new task" value="' + text + '" aria-label="Username" aria-describedby="basic-addon1">')
     console.log('Esto es ID' + id);
     event.stopPropagation();
+}
 
-})
-
-
-
-$("ul").on('keypress', '.editText', function (e) {
-
+const onClickEditText = function(e) {
     if (e.which == 13) {
         const id = parseInt($(this).attr('id'));
         const text = $(this).val();
         console.log('se MANDA AQUI ');
         state({ 'id': id, 'title': text });
-        $(this).replaceWith(`<li class=" d-flex justify-content-between card-text task" id="${id}"><span class='delete'><i class="fa fa-trash"></i></span> ${text} <span class="edit"><i class="fa fa-pencil "></i></span></li>`)
+        $(this).replaceWith(`<li class=" d-flex justify-content-between card-text task" id="${id}"><span class='delete'><i class="fa fa-trash"></i></span>${text}<span class="edit"><i class="fa fa-pencil "></i></span></li>`)
 
     }
-    event.stopPropagation();
-})
+    e.stopPropagation();
+}
 
+$("input").on('keypress', onInputKeypress);
+$('ul').on('click', '.delete', 'i', onDelete);
+$('ul').on('click', 'li', onToggleDone);
+$('ul').on('click', '.edit', onClickEdit);
+$("ul").on('keypress', '.editText', onClickEditText);
 
+const state = (data) => {
+    _put(data, data.id);
+}
 
+_get()
 
-
-
-$(document).ready(
-    _get()
-);
