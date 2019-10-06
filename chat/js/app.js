@@ -38,11 +38,13 @@ function showUser(user) {
   }
 }
 
-$(".user").on("click", "li", e => {
+const onClickUser = e => {
   const url = $(e.currentTarget).attr("id");
   $(".message").empty(); // Delete previous chat to put new one
   getChat(url);
-});
+}
+
+$(".user").on("click", "li", onClickUser);
 
 function showChat(chat) {
   $(".message").append("<div><ul><li><strong>" + chat.name + "</strong><span> " + chat.date + "</span></li><li>" + chat.body + "</li></ul></div>");
